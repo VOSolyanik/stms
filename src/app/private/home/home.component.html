@@ -1,0 +1,6 @@
+<div class="user">
+  <div class="user-name__wrapp">
+    <div appDraggable [position]="user.namePosition" (dragEnd)="savePosition($event, 'name')" class="user-name">{{user.firstName}} {{user.lastName}}</div>
+  </div>
+  <img appDraggable [position]="user.picturePosition" (dragEnd)="savePosition($event, 'picture')" class="user-ava" [src]="user.pictureUrl" alt="User photo">
+</div>
