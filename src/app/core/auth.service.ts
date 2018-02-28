@@ -25,7 +25,13 @@ export class AuthService {
   }
 
   get currentUser() {
-    return JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = null;
+    try {
+      currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    } catch (e) {
+      console.error(e);
+    }
+    return currentUser;
   }
 
 }

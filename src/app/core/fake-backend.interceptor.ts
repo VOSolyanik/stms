@@ -9,7 +9,13 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/materialize';
 import 'rxjs/add/operator/dematerialize';
 
-const firstUserPositions = JSON.parse(localStorage.getItem('1.userPositions'));
+
+let firstUserPositions = null;
+try {
+  firstUserPositions = JSON.parse(localStorage.getItem('1.userPositions'));
+} catch (e) {
+  console.error(e);
+}
 
 const users: any[] = [
   {
@@ -86,7 +92,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             // update user positions
             matchedUser.picturePosition = request.body.picturePosition;
             matchedUser.namePosition = request.body.namePosition;
-            // additionaly save in LS for restore after reload 
+            // additionaly save in LS for restore after reload
             // but even without this will restor positions after Logout/Login
             localStorage.setItem(id + '.userPositions', JSON.stringify(request.body));
 
